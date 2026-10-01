@@ -1,0 +1,44 @@
+﻿media:
+  input: public/media
+  output: /media
+
+content:
+  - name: products
+    label: Products
+    type: collection
+    path: content/products
+    format: yaml-frontmatter
+    fields:
+      - name: id
+        label: Product ID
+        type: string
+        required: true
+      - name: title
+        label: Product Title
+        type: string
+        required: true
+      - name: category
+        label: Category
+        type: select
+        options:
+          - Jewellery Set
+          - Bangles & Bracelets
+          - Rings
+          - Earrings
+          - Necklace and Chains
+          - Hair Accessory
+      - name: price
+        label: Price (INR)
+        type: number
+      - name: original_price
+        label: Original Price (INR)
+        type: number
+      - name: stock
+        label: Stock Quantity
+        type: number
+      - name: image
+        label: Product Image
+        type: image
+      - name: description
+        label: Description
+        type: rich-text
