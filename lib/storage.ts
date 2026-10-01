@@ -1,47 +1,36 @@
-﻿export interface User {
-  phone: string;
-  dob: string;
-  address: string;
+﻿export interface UserProfile {
   fullName: string;
+  phone: string;
   email: string;
-}
-
-export interface Order {
-  orderId: string;
-  items: any[];
-  totalAmount: number;
-  deliveryDate: string;
-  status: string;
   address: string;
-  dateCreated: string;
 }
 
-export const saveUser = (user: User) => {
+export const saveUser = (user: UserProfile) => {
   if (typeof window !== 'undefined') {
-    localStorage.setItem('user_profile', JSON.stringify(user));
+    localStorage.setItem('rumes_user_profile', JSON.stringify(user));
   }
 };
 
-export const getUser = (): User | null => {
+export const getUser = (): UserProfile | null => {
   if (typeof window !== 'undefined') {
-    const data = localStorage.getItem('user_profile');
+    const data = localStorage.getItem('rumes_user_profile');
     return data ? JSON.parse(data) : null;
   }
   return null;
 };
 
-export const saveOrder = (order: Order) => {
+export const getCart = () => {
   if (typeof window !== 'undefined') {
-    const existingOrders = getOrders();
-    existingOrders.push(order);
-    localStorage.setItem('user_orders', JSON.stringify(existingOrders));
-  }
-};
-
-export const getOrders = (): Order[] => {
-  if (typeof window !== 'undefined') {
-    const data = localStorage.getItem('user_orders');
+    const data = localStorage.getItem('rumes_cart');
     return data ? JSON.parse(data) : [];
   }
   return [];
+};
+
+export const addToCart = (item: any) => {
+  if (typeof window !== 'undefined') {
+    const cart = getCart();
+    cart.push(item);
+    localStorage.setItem('rumes_cart', JSON.stringify(cart));
+  }
 };
